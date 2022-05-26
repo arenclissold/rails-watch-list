@@ -8,9 +8,20 @@
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <script src="https://kit.fontawesome.com/7b8fdf30c4.js" crossorigin="anonymous"></script>
   </head>
 
   <body>
+  <div class="navbar p-3">
+    <%= link_to lists_path do %>
+      <i class="fa-solid fa-film"></i>
+    <% end %>
+    <div class="link-gray">
+      <%= link_to "My Lists", lists_path, class: 'me-2 text-secondary'%>
+      <%= link_to "New List", new_list_path, class: 'text-secondary' %>
+
+    </div>
+  </div>
     <%= yield %>
   </body>
 </html>

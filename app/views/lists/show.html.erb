@@ -1,0 +1,23 @@
+
+<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)),url('<%= @list.image_url %>')">
+  <h1><%= @list.name %></h1>
+</div>
+
+<div class="container d-flex">
+  <% @bookmarks.each do |bookmark| %>
+  <div class="card m-5">
+    <img src="<%= bookmark.movie.poster_url %>" alt="<%= bookmark.movie.title %><">
+    <h3><%= bookmark.movie.title %> - <%= bookmark.movie.rating.to_s %></h3>
+    <p><%= bookmark.comment %></p>
+    <%= link_to "Delete",
+        bookmark_path(bookmark),
+        method: :delete,
+        data: { confirm: "Are you sure?" } %>
+  </div>
+  <% end %>
+</div>
+
+
+
+
+<%= link_to "Add Bookmark", new_list_bookmark_path(@list) %>

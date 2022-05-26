@@ -1,0 +1,19 @@
+<div class="banner" style="background-image: url('https://images.unsplash.com/photo-1524985069026-dd778a71c7b4?crop=entropy&cs=tinysrgb&fm=jpg&ixlib=rb-1.2.1&q=80&raw_url=true&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1771')">
+  <h1>Save any kind of movies</h1>
+</div>
+
+<div class="container">
+  <div class="d-flex justify-content-between align-items-center my-3">
+    <h1>My Lists</h1>
+    <%= link_to "Create a movie list", new_list_path, class: "btn btn-success text-white" %>
+  </div>
+  <div class="grid">
+    <% @lists.each do |list| %>
+    <%= link_to list_path(list) do%>
+    <div class="card-landscape shadow" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)),url('<%= list.image_url %>')">
+      <h3><%= list.name %></h3>
+    </div>
+    <% end %>
+    <% end %>
+  </div>
+</div>
