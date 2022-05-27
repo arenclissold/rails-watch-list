@@ -2,22 +2,26 @@
 <div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)),url('<%= @list.image_url %>')">
   <h1><%= @list.name %></h1>
 </div>
-
-<div class="container d-flex">
-  <% @bookmarks.each do |bookmark| %>
-  <div class="card m-5">
-    <img src="<%= bookmark.movie.poster_url %>" alt="<%= bookmark.movie.title %><">
-    <h3><%= bookmark.movie.title %> - <%= bookmark.movie.rating.to_s %></h3>
-    <p><%= bookmark.comment %></p>
-    <%= link_to "Delete",
-        bookmark_path(bookmark),
-        method: :delete,
-        data: { confirm: "Are you sure?" } %>
+<div class="container">
+  <div class="d-flex justify-content-end my-4">
+    <%= link_to "Add Bookmark", new_list_bookmark_path(@list), class: 'btn btn-success text-white' %>
   </div>
-  <% end %>
+  <div class="grid-2">
+    <% @bookmarks.each do |bookmark| %>
+    <div class="shadow bg-white">
+      <img class="w-100" src="<%= bookmark.movie.poster_url %>" alt="<%= bookmark.movie.title %>">
+      <div class="p-3">
+        <h3><%= bookmark.movie.title %> - <%= bookmark.movie.rating.round(1).to_s %></h3>
+        <p><%= bookmark.movie.overview %></p>
+        <div class="d-flex justify-content-between"><%= bookmark.comment %>
+        <%= link_to "Delete",
+              bookmark_path(bookmark),
+              method: :delete,
+              data: { confirm: "Are you sure?" },
+              class: 'text-danger' %>
+        </div>
+      </div>
+    </div>
+    <% end %>
+  </div>
 </div>
-
-
-
-
-<%= link_to "Add Bookmark", new_list_bookmark_path(@list) %>
