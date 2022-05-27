@@ -1,11 +1,12 @@
 class ListsController < ApplicationController
   def index
-    @lists = List.all
+    @lists = List.all.order(:name)
   end
 
   def show
     @list = List.find(params[:id])
     @bookmarks = Bookmark.where(list_id: params[:id])
+    @new_bookmark = Bookmark.new
   end
 
   def create

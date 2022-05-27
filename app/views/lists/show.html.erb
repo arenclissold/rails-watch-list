@@ -2,18 +2,19 @@
 <div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)),url('<%= cl_image_path @list.photo.key %>')">
   <h1><%= @list.name %></h1>
 </div>
-<div class="container">
-  <div class="d-flex justify-content-end my-4">
-    <%= link_to "Add Bookmark", new_list_bookmark_path(@list), class: 'btn btn-success text-white' %>
-  </div>
+<div class="container my-5">
   <div class="grid-2">
     <% @bookmarks.each do |bookmark| %>
     <div class="shadow bg-white">
       <img class="w-100" src="<%= bookmark.movie.poster_url %>" alt="<%= bookmark.movie.title %>">
       <div class="p-3">
-        <h3><%= bookmark.movie.title %> - <%= bookmark.movie.rating.round(1).to_s %></h3>
+        <div>
+          <h3 class="d-inline"><%= bookmark.movie.title %></h3>
+          <h5 class="d-inline text-muted"><%= bookmark.movie.rating.round(1).to_s %></h5>
+          <i class="gold fa-solid fa-star"></i>
+        </div>
         <p><%= bookmark.movie.overview %></p>
-        <div class="d-flex justify-content-between"><%= bookmark.comment %>
+        <div class="d-flex justify-content-between"><span><i class="fa-solid fa-quote-left"></i> <%= bookmark.comment %></span>
         <%= link_to "Delete",
               bookmark_path(bookmark),
               method: :delete,
@@ -23,5 +24,13 @@
       </div>
     </div>
     <% end %>
+    <div class="shadow bg-white p-3">
+    <h3>Add a New Bookmark</h3>
+      <%= simple_form_for [@list, @new_bookmark] do |f| %>
+      <%= f.input :comment %>
+      <%= f.association :movie, include_blank: false %>
+      <%= f.submit class: 'btn btn-success text-white' %>
+      <% end %>
+    </div>
   </div>
 </div>
