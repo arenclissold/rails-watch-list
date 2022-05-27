@@ -11,3 +11,18 @@
   gap: 30px;
   margin-bottom: 50px;
 }
+
+@media (max-width: 996px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .grid-2 {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
+
+@media (max-width: 540px) {
+  .grid {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
