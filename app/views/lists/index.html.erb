@@ -10,7 +10,7 @@
   <div class="grid">
     <% @lists.each do |list| %>
     <%= link_to list_path(list) do%>
-    <div class="card-landscape shadow" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)),url('<%= list.image_url %>')">
+    <div class="card-landscape shadow" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)),url('<%= cl_image_path list.photo.key %>')">
       <h3><%= list.name %></h3>
     </div>
     <% end %>
