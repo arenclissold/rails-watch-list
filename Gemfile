@@ -58,3 +58,5 @@ gem "autoprefixer-rails", "10.2.5"
 gem "font-awesome-sass", "~> 5.15"
 # makes better forms
 gem "simple_form", github: "heartcombo/simple_form"
+# hides api keys
+gem 'dotenv-rails', groups: [:development, :test]
